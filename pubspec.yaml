@@ -76,6 +76,7 @@ dependencies:
   video_player: ^2.7.2
   video_thumbnail: ^0.5.3
   im_stepper: ^1.0.1+1
+  csc_picker: ^0.2.7
 
 
 dev_dependencies:

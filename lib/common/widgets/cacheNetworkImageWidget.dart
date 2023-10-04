@@ -51,9 +51,9 @@ class _CacheNetworkImageWidgetState extends State<CacheNetworkImageWidget> {
             //   fallbackWidth: widget.builerWidth!,
             //   child: SvgPicture.asset(Res.placeHolder),
             // ),
-            const SpinKitPouringHourGlass(
+            const SpinKitSpinningLines(
               color: AppColors.appcolor,
-              size: 22,
+              size: 40,
               //    type: SpinKitWaveType.start
             ),
         errorWidget: (context, url, error) => const Icon(Icons.person));

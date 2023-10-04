@@ -1,3 +1,4 @@
+import 'package:csc_picker/csc_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
@@ -218,6 +219,48 @@ class _PersonalInformationScreenState extends State<PersonalInformationScreen> {
                                           const SizedBox(
                                             height: 5,
                                           ),
+                                          CSCPicker(
+                                            flagState: CountryFlag.DISABLE,
+                                            showCities: true,
+
+                                            // disableCountry: true,
+                                            onCountryChanged: (value) {
+                                              setState(() {
+                                                authProvider.selectedCountry =
+                                                    value;
+                                                // countryValue = value;
+                                              });
+                                              dp(
+                                                  msg: "selected country ",
+                                                  arg: authProvider
+                                                      .selectedCountry);
+                                            },
+                                            onStateChanged: (value) {
+                                              setState(() {
+                                                authProvider.selectedState =
+                                                    value;
+                                                // stateValue = value;
+                                              });
+                                              dp(
+                                                  msg: "selected state ",
+                                                  arg: authProvider
+                                                      .selectedState);
+                                            },
+                                            onCityChanged: (value) {
+                                              setState(() {
+                                                authProvider.selectedCity =
+                                                    value;
+                                                //cityValue = value;
+                                              });
+                                              dp(
+                                                  msg: "selected city ",
+                                                  arg: authProvider
+                                                      .selectedCity);
+                                            },
+                                          ),
+                                          SizedBox(
+                                            height: 10,
+                                          ),
                                           TextFieldWidget(
                                               showSuffixIcon: false,
                                               controller: authProvider
@@ -271,29 +314,29 @@ class _PersonalInformationScreenState extends State<PersonalInformationScreen> {
                                                   TextInputType.streetAddress),
                                           Row(
                                             children: [
-                                              Expanded(
-                                                flex: 5,
-                                                child: TextFieldWidget(
-                                                    showSuffixIcon: false,
-                                                    controller: authProvider
-                                                        .cityController,
-                                                    textFieldHeight: 55,
-                                                    maxlines: 1,
-                                                    maxLengt: 30,
-                                                    toppadding: 18,
-                                                    hintText: "City",
-                                                    validator: (value) {
-                                                      if (value!.isEmpty) {
-                                                        return "Please enter city";
-                                                      }
-                                                      return null;
-                                                    },
-                                                    textInputType: TextInputType
-                                                        .emailAddress),
-                                              ),
-                                              const SizedBox(
-                                                width: 10,
-                                              ),
+                                              // Expanded(
+                                              //   flex: 5,
+                                              //   child: TextFieldWidget(
+                                              //       showSuffixIcon: false,
+                                              //       controller: authProvider
+                                              //           .cityController,
+                                              //       textFieldHeight: 55,
+                                              //       maxlines: 1,
+                                              //       maxLengt: 30,
+                                              //       toppadding: 18,
+                                              //       hintText: "City",
+                                              //       validator: (value) {
+                                              //         if (value!.isEmpty) {
+                                              //           return "Please enter city";
+                                              //         }
+                                              //         return null;
+                                              //       },
+                                              //       textInputType: TextInputType
+                                              //           .emailAddress),
+                                              // ),
+                                              // const SizedBox(
+                                              //   width: 10,
+                                              // ),
                                               Expanded(
                                                 flex: 5,
                                                 child: TextFieldWidget(
@@ -316,40 +359,40 @@ class _PersonalInformationScreenState extends State<PersonalInformationScreen> {
                                               ),
                                             ],
                                           ),
-                                          TextFieldWidget(
-                                              showSuffixIcon: false,
-                                              controller: authProvider
-                                                  .provinceController,
-                                              textFieldHeight: 55,
-                                              maxlines: 1,
-                                              toppadding: 18,
-                                              maxLengt: 40,
-                                              validator: (value) {
-                                                if (value!.isEmpty) {
-                                                  return "Please enter province/state";
-                                                }
-                                                return null;
-                                              },
-                                              hintText: "Province/State",
-                                              textInputType:
-                                                  TextInputType.emailAddress),
-                                          TextFieldWidget(
-                                              showSuffixIcon: false,
-                                              controller:
-                                                  authProvider.coutryController,
-                                              textFieldHeight: 55,
-                                              maxlines: 1,
-                                              toppadding: 18,
-                                              hintText: "Country",
-                                              maxLengt: 30,
-                                              validator: (value) {
-                                                if (value!.isEmpty) {
-                                                  return "Please enter country name";
-                                                }
-                                                return null;
-                                              },
-                                              textInputType:
-                                                  TextInputType.emailAddress),
+                                          // TextFieldWidget(
+                                          //     showSuffixIcon: false,
+                                          //     controller: authProvider
+                                          //         .provinceController,
+                                          //     textFieldHeight: 55,
+                                          //     maxlines: 1,
+                                          //     toppadding: 18,
+                                          //     maxLengt: 40,
+                                          //     validator: (value) {
+                                          //       if (value!.isEmpty) {
+                                          //         return "Please enter province/state";
+                                          //       }
+                                          //       return null;
+                                          //     },
+                                          //     hintText: "Province/State",
+                                          //     textInputType:
+                                          //         TextInputType.emailAddress),
+                                          // TextFieldWidget(
+                                          //     showSuffixIcon: false,
+                                          //     controller:
+                                          //         authProvider.coutryController,
+                                          //     textFieldHeight: 55,
+                                          //     maxlines: 1,
+                                          //     toppadding: 18,
+                                          //     hintText: "Country",
+                                          //     maxLengt: 30,
+                                          //     validator: (value) {
+                                          //       if (value!.isEmpty) {
+                                          //         return "Please enter country name";
+                                          //       }
+                                          //       return null;
+                                          //     },
+                                          //     textInputType:
+                                          //         TextInputType.emailAddress),
                                           // TextFieldWidget(
                                           //     showSuffixIcon: true,
                                           //     controller: coutryController,
@@ -494,27 +537,52 @@ class _PersonalInformationScreenState extends State<PersonalInformationScreen> {
                                   textfont: 16,
                                   onTap: () {
                                     if (_formKey.currentState!.validate()) {
-                                      if (isLiablityenable == false) {
+                                      if (authProvider.selectedCountry ==
+                                          null) {
                                         showSnackBarMessage(
                                             backgroundcolor: AppColors.redcolor,
-                                            contentColor: AppColors.whitecolor,
                                             context: context,
-                                            content:
-                                                "Please accept release and waiver of liability form ");
-                                      } else if (authProvider.seletedType ==
-                                              "Register As" ||
-                                          authProvider.seletedType == null) {
+                                            content: "Please Select Country");
+                                      } else if (authProvider.selectedState ==
+                                          null) {
                                         showSnackBarMessage(
                                             backgroundcolor: AppColors.redcolor,
-                                            contentColor: AppColors.whitecolor,
                                             context: context,
-                                            content:
-                                                "Please Select Register As");
+                                            content: "Please Select State");
+                                      } else if (authProvider.selectedCity ==
+                                          null) {
+                                        showSnackBarMessage(
+                                            backgroundcolor: AppColors.redcolor,
+                                            context: context,
+                                            content: "Please Select City");
                                       } else {
-                                        //authProvider.createUser();
-                                        toNext(
-                                            context: context,
-                                            widget: BankingInformationScreen());
+                                        if (isLiablityenable == false) {
+                                          showSnackBarMessage(
+                                              backgroundcolor:
+                                                  AppColors.redcolor,
+                                              contentColor:
+                                                  AppColors.whitecolor,
+                                              context: context,
+                                              content:
+                                                  "Please accept release and waiver of liability form ");
+                                        } else if (authProvider.seletedType ==
+                                                "Register As" ||
+                                            authProvider.seletedType == null) {
+                                          showSnackBarMessage(
+                                              backgroundcolor:
+                                                  AppColors.redcolor,
+                                              contentColor:
+                                                  AppColors.whitecolor,
+                                              context: context,
+                                              content:
+                                                  "Please Select Register As");
+                                        } else {
+                                          //authProvider.createUser();
+                                          toNext(
+                                              context: context,
+                                              widget:
+                                                  BankingInformationScreen());
+                                        }
                                       }
                                     }
                                   }),

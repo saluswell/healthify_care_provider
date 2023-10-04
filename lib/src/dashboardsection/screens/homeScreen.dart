@@ -360,39 +360,42 @@ class _HomeScreenState extends State<HomeScreen> {
                                   context.watch<List<PaymentModel>>();
                               // Use fold to calculate the total amount
 
-                              return paymentsList.isEmpty
-                                  ? const Center(
-                                      child: Padding(
-                                      padding: EdgeInsets.only(top: 220),
-                                      child: Text("No Revenue History Found!",
-                                          style: TextStyle(
-                                              // fontFamily: 'Gilroy',
-                                              color: AppColors.blackcolor,
-                                              // decoration: TextDecoration.underline,
-                                              fontWeight: FontWeight.w700,
-                                              fontFamily: 'Axiforma',
-                                              fontSize: 13)),
-                                    ))
-                                  : paymentsList[0].paymentId == null
-                                      ? const SpinKitPouringHourGlass(
-                                          size: 30,
-                                          color: AppColors.appcolor,
-                                        )
-                                      : Expanded(
-                                          flex: 5,
-                                          child: Container(
-                                            height: 158,
-                                            width: 150,
-                                            decoration: BoxDecoration(
-                                              color: AppColors.lightwhitecolor,
-                                              borderRadius:
-                                                  BorderRadius.circular(9),
+                              return Expanded(
+                                flex: 5,
+                                child: Container(
+                                  height: 158,
+                                  width: 150,
+                                  decoration: BoxDecoration(
+                                    color: AppColors.lightwhitecolor,
+                                    borderRadius: BorderRadius.circular(9),
+                                  ),
+                                  child: Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 12),
+                                    child: paymentsList.isEmpty
+                                        ? Center(
+                                            child: RichText(
+                                              textAlign: TextAlign.center,
+                                              text: TextSpan(
+                                                  text:
+                                                      "No Revenue History Found!",
+                                                  style: TextStyle(
+                                                      // fontFamily: 'Gilroy',
+                                                      color:
+                                                          AppColors.blackcolor,
+                                                      // decoration: TextDecoration.underline,
+                                                      fontWeight:
+                                                          FontWeight.w700,
+                                                      fontFamily: 'Axiforma',
+                                                      fontSize: 13)),
                                             ),
-                                            child: Padding(
-                                              padding:
-                                                  const EdgeInsets.symmetric(
-                                                      horizontal: 12),
-                                              child: Column(
+                                          )
+                                        : paymentsList[0].paymentId == null
+                                            ? const SpinKitSpinningLines(
+                                                size: 45,
+                                                color: AppColors.appcolor,
+                                              )
+                                            : Column(
                                                 mainAxisAlignment:
                                                     MainAxisAlignment.center,
                                                 crossAxisAlignment:
@@ -478,9 +481,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                                   )
                                                 ],
                                               ),
-                                            ),
-                                          ),
-                                        );
+                                  ),
+                                ),
+                              );
                             })
                       ],
                     ),
@@ -538,8 +541,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                           fontSize: 13)),
                                 ))
                               : appointmentList[0].appointmentId == null
-                                  ? const SpinKitPouringHourGlass(
-                                      size: 30,
+                                  ? const SpinKitSpinningLines(
+                                      size: 45,
                                       color: AppColors.appcolor,
                                     )
                                   : Expanded(

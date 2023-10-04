@@ -44,6 +44,10 @@ class AuthProvider extends ChangeNotifier {
     'Physician'
   ];
 
+  String? selectedCountry;
+  String? selectedState;
+  String? selectedCity;
+
   updateRecordVarValue(val) {
     seletedType = val;
     notifyListeners();
@@ -143,10 +147,10 @@ class AuthProvider extends ChangeNotifier {
               mobileNumber: mobileNumberController.text,
               businessContact: bussinessContactController.text,
               adress: addressController.text,
-              city: cityController.text,
+              city: selectedCity,
               postalCode: zipPostalCodeController.text,
-              province: provinceController.text,
-              country: coutryController.text),
+              province: selectedState,
+              country: selectedCountry),
           bankingInformationModel: BankingInformationModel(
               userId: getUserID(),
               bankBrachName: branchNameController.text,

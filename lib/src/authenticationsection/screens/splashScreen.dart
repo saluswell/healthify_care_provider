@@ -89,6 +89,26 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      bottomSheet: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                "Care Provider",
+                style: fontW5S12(context)!.copyWith(
+                    fontSize: 17,
+                    color: AppColors.appcolor,
+                    fontWeight: FontWeight.w700),
+              ),
+            ],
+          ),
+          SizedBox(
+            height: 25,
+          ),
+        ],
+      ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
@@ -97,20 +117,13 @@ class _SplashScreenState extends State<SplashScreen> {
             child: Column(
               children: [
                 Image.asset(
-                  Res.applogoupdated,
-                  height: 150,
-                  width: 150,
+                  Res.healthify,
+                  height: 300,
+                  width: 300,
                 ),
                 const SizedBox(
                   height: 10,
                 ),
-                Text(
-                  "Dietitian",
-                  style: fontW5S12(context)!.copyWith(
-                      fontSize: 24,
-                      color: AppColors.appcolor,
-                      fontWeight: FontWeight.w700),
-                )
               ],
             ),
           ),

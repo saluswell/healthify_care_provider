@@ -2,6 +2,7 @@
 class Res {
   static const String applogo = "assets/Images/applogo.png";
   static const String applogoupdated = "assets/Images/applogoupdated.png";
+  static const String healthify = "assets/Images/healthify.png";
   static const String arrowbaclcircle = "assets/Images/arrowbaclcircle.svg";
   static const String arrowdownicon = "assets/Images/arrowdownicon.svg";
   static const String arrowforward = "assets/Images/arrowforward.svg";
