@@ -49,6 +49,7 @@ class MealPlanModel {
           ? []
           : List<String>.from(json["dinnerMeals"]),
       isApprovedByAdmin: json["isApprovedByAdmin"],
+      dateCreated: json["dateCreated"],
       mealPlanDay: json["mealPlanDay"]);
 
   Map<String, dynamic> toJson(String docID) => {

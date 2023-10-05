@@ -14,6 +14,8 @@ import '../services/meal_plan_services.dart';
 class MealPlanProvider extends ChangeNotifier {
   bool isLoading = false;
 
+  int? selectedIndex = 0;
+
   makeLoadingTrue() {
     isLoading = true;
     notifyListeners();
@@ -224,5 +226,9 @@ class MealPlanProvider extends ChangeNotifier {
           context: navstate.currentState!.context, content: e.toString());
       // TODO
     }
+  }
+
+  fetchDaysProvider(String mealPlanID) {
+    mealPlanServices.fetchDays(mealPlanID);
   }
 }

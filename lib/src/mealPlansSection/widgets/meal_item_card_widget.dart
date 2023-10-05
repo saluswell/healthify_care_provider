@@ -11,7 +11,7 @@ class MealItemCardWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 1),
+      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 1),
       child: Container(
         height: 65,
         width: MediaQuery.of(context).size.width,
@@ -28,7 +28,7 @@ class MealItemCardWidget extends StatelessWidget {
                 Expanded(
                   child: RichText(
                     text: TextSpan(
-                      text: item,
+                      text: item.toUpperCase(),
                       style: fontW5S12(context)!.copyWith(
                           fontSize: 12,
                           color: AppColors.blackcolor,
