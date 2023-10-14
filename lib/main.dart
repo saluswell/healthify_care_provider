@@ -3,6 +3,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:healthify_care_provider/src/%20careGoalPlanSection/providers/care_goal_provider.dart';
 import 'package:healthify_care_provider/src/apppointmentsSection/providers/appointmentProvider.dart';
 import 'package:healthify_care_provider/src/apppointmentsSection/providers/available_time_slots.dart';
 import 'package:healthify_care_provider/src/authenticationsection/providers/authProvider.dart';
@@ -13,13 +14,13 @@ import 'package:healthify_care_provider/src/authenticationsection/screens/loginS
 import 'package:healthify_care_provider/src/authenticationsection/screens/personalInformationScreen.dart';
 import 'package:healthify_care_provider/src/authenticationsection/screens/professionalInformationScreen.dart';
 import 'package:healthify_care_provider/src/authenticationsection/screens/splashScreen.dart';
-import 'package:healthify_care_provider/src/careGoalPlanSection/providers/nuttrition_Care_provider.dart';
 import 'package:healthify_care_provider/src/dashboardsection/provider/bottom_navbar_provider.dart';
 import 'package:healthify_care_provider/src/dashboardsection/screens/bottomNavScreen.dart';
 import 'package:healthify_care_provider/src/dashboardsection/screens/homeScreen.dart';
 import 'package:healthify_care_provider/src/mealPlansSection/providers/meal_plan_provider.dart';
 import 'package:healthify_care_provider/src/notesSection/providers/soap_note_provider.dart';
 import 'package:healthify_care_provider/src/notificationSection/handlers/notification_handler.dart';
+import 'package:healthify_care_provider/src/nutritionGoalPlanSection/providers/nuttrition_Care_provider.dart';
 import 'package:healthify_care_provider/src/onboardingsection/screens/onboardingscreen_one.dart';
 import 'package:healthify_care_provider/src/onboardingsection/screens/onboardingscreen_three.dart';
 import 'package:healthify_care_provider/src/onboardingsection/screens/onboardingscreen_two.dart';
@@ -152,6 +153,7 @@ class _MyAppState extends State<MyApp> {
         ChangeNotifierProvider(create: (context) => MealPlanProvider()),
         ChangeNotifierProvider(create: (context) => RecipesProvider()),
         ChangeNotifierProvider(create: (context) => WorkoutProvider()),
+        ChangeNotifierProvider(create: (context) => CareGoalProvider()),
       ],
       child: GestureDetector(
         onTap: () {

@@ -2,6 +2,7 @@ import 'package:date_time_format/date_time_format.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../../../ careGoalPlanSection/screens/care_goal_plans_listing.dart';
 import '../../../../common/helperFunctions/getUserIDhelper.dart';
 import '../../../../common/helperFunctions/hive_local_storage.dart';
 import '../../../../common/helperFunctions/navigatorHelper.dart';
@@ -11,10 +12,10 @@ import '../../../../common/utils/textutils.dart';
 import '../../../../common/utils/themes.dart';
 import '../../../../common/widgets/button_widget.dart';
 import '../../../VideoCallingSection/screens/zego_simple_join_video_call.dart';
-import '../../../careGoalPlanSection/screens/nutrition_care_plan_list.dart';
 import '../../../chatSection/screens/messages.dart';
 import '../../../notesSection/soapNotes/screens/soapNotesList.dart';
 import '../../../notificationSection/handlers/notification_handler.dart';
+import '../../../nutritionGoalPlanSection/screens/nutrition_care_plan_list.dart';
 import '../../../reviewsSection/screens/givereviewScreen.dart';
 import '../../models/appointmetntNewModel.dart';
 import '../../providers/appointmentProvider.dart';
@@ -456,6 +457,9 @@ class _AppointmentDetailsScreenState extends State<AppointmentDetailsScreen> {
                         horizontalPadding: 0,
                         backgroundcolor: AppColors.darkAppColor,
                         onTap: () {
+                          toNext(
+                              context: context,
+                              widget: CareGoalPlansListScreen());
                           // toNext(
                           //     context: context,
                           //     widget: NutritionCarePlan(

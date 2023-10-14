@@ -15,6 +15,8 @@ class FirebaseUtils {
   static String soapNotes = "soapNotes";
   static String carePlans = "carePlans";
 
+  static String careGoalPlans = "careGoalPlans";
+
   static String reviews = "reviews";
 
   static String healthtips = "healthtips";

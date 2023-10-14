@@ -1,7 +1,6 @@
 import 'package:date_time_format/date_time_format.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:video_player/video_player.dart';
 
 import '../../../common/helperFunctions/navigatorHelper.dart';
 import '../../../common/utils/appcolors.dart';
@@ -21,29 +20,6 @@ class WorkOutsCardWidget extends StatefulWidget {
 }
 
 class _WorkOutsCardWidgetState extends State<WorkOutsCardWidget> {
-  // @override
-  // void initState() {
-  //   // context.read<WorkoutProvider>().intializeNetWorkVideoWithController(
-  //   //     widget.workoutModel.workoutVideo.toString());
-  //
-  //   late VideoPlayerController _controller;
-  //
-  //
-  //   super.initState();
-  // }
-  late VideoPlayerController _controller;
-
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   _controller = VideoPlayerController.networkUrl(
-  //     Uri.parse(widget.workoutModel.workoutVideo.toString()),
-  //   )..initialize().then((_) {
-  //       // Ensure the first frame is shown and set the state
-  //       setState(() {});
-  //     });
-  // }
-
   @override
   Widget build(BuildContext context) {
     return Consumer<WorkoutProvider>(builder: (context, workoutProvider, __) {
@@ -65,73 +41,6 @@ class _WorkOutsCardWidgetState extends State<WorkOutsCardWidget> {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                // Container(
-                //   height: 55,
-                //   width: 55,
-                //   decoration: BoxDecoration(
-                //     borderRadius: BorderRadius.circular(8),
-                //
-                //   ),
-                // )
-                // Container(
-                //   height: 150,
-                //   width: MediaQuery.of(context).size.width,
-                //   child: ClipRRect(
-                //       borderRadius: BorderRadius.only(
-                //           topRight: Radius.circular(13),
-                //           topLeft: Radius.circular(13),
-                //           bottomLeft: Radius.circular(7),
-                //           bottomRight: Radius.circular(7)),
-                //       child: Stack(
-                //         children: [
-                //           // _controller.value.isInitialized
-                //           //     ? VideoPlayer(workoutProvider.videoController)
-                //           //     : SpinKitPouringHourGlass(
-                //           //         size: 30, color: AppColors.appcolor),
-                //           Positioned(
-                //               child: Center(
-                //                   child: InkWell(
-                //             onTap: () {
-                //               if (_controller.value.isPlaying) {
-                //                 setState(() {
-                //                   _controller.pause();
-                //                 });
-                //               } else {
-                //                 setState(() {
-                //                   _controller.play();
-                //                 });
-                //               }
-                //             },
-                //             child: Container(
-                //               height: 35,
-                //               width: 35,
-                //               decoration: BoxDecoration(
-                //                 borderRadius: BorderRadius.circular(65),
-                //               ),
-                //               child: _controller.value.isPlaying
-                //                   ? Icon(
-                //                       Icons.pause,
-                //                       color: AppColors.whitecolor,
-                //                     )
-                //                   : Icon(
-                //                       Icons.play_arrow,
-                //                       color: AppColors.whitecolor,
-                //                     ),
-                //             ),
-                //           )))
-                //         ],
-                //       )),
-                // ),
-                // CacheNetworkImageWidget(
-                //   imgUrl: recipesList[index]
-                //       .recipeImage
-                //       .toString(),
-                //   width: MediaQuery.of(context)
-                //       .size
-                //       .width,
-                //   radius: 7,
-                //   height: 160,
-                // ),
                 SizedBox(
                   height: 12,
                 ),

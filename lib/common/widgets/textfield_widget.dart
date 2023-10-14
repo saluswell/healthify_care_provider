@@ -24,7 +24,8 @@ class TextFieldWidget extends StatelessWidget {
       this.showSuffixIcon = false,
       this.suffixIcon,
       this.obsecureText = false,
-      this.onsuffixIconTap})
+      this.onsuffixIconTap,
+      this.hintColor = AppColors.lightdarktextcolor})
       : super(key: key);
 
   final TextEditingController? controller;
@@ -44,6 +45,7 @@ class TextFieldWidget extends StatelessWidget {
   final Icon? suffixIcon;
   final bool obsecureText;
   final VoidCallback? onsuffixIconTap;
+  final Color? hintColor;
 
   @override
   Widget build(BuildContext context) {
@@ -51,7 +53,7 @@ class TextFieldWidget extends StatelessWidget {
       padding: const EdgeInsets.only(bottom: 10),
       child: Consumer<AuthProvider>(builder: (context, authProvider, __) {
         return Container(
-          // height: textFieldHeight,
+          height: textFieldHeight,
           // width: double.infinity,
           decoration: BoxDecoration(
             color: AppColors.lightwhitecolor,
@@ -97,13 +99,13 @@ class TextFieldWidget extends StatelessWidget {
                 isDense: true,
                 counter: const SizedBox(),
                 errorStyle: TextStyle(height: 0.1, fontSize: 11),
-                hintStyle: const TextStyle(
+                hintStyle: TextStyle(
                     // textStyle: Theme.of(context).textTheme.headline4,
                     fontSize: 14,
                     fontFamily: "Helvetica",
                     fontWeight: FontWeight.w400,
                     fontStyle: FontStyle.normal,
-                    color: AppColors.lightdarktextcolor),
+                    color: hintColor),
                 hintText: hintText,
                 suffixIcon: showSuffixIcon == true
                     ? Padding(
