@@ -14,7 +14,10 @@ import '../widgets/add_meal_dialog.dart';
 import '../widgets/meal_item_card_widget.dart';
 
 class CreateMealPlanScreen extends StatefulWidget {
-  const CreateMealPlanScreen({Key? key}) : super(key: key);
+  final String appointmentID;
+
+  const CreateMealPlanScreen({Key? key, required this.appointmentID})
+      : super(key: key);
 
   @override
   State<CreateMealPlanScreen> createState() => _CreateMealPlanScreenState();
@@ -87,7 +90,8 @@ class _CreateMealPlanScreenState extends State<CreateMealPlanScreen> {
                                     backgroundcolor: AppColors.redcolor);
                               } else {
                                 if (mealPlanProvider.activeStep == 0) {
-                                  mealPlanProvider.createMealPlanProvider();
+                                  mealPlanProvider.createMealPlanProvider(
+                                      widget.appointmentID);
                                 } else {
                                   mealPlanProvider
                                       .updateAndCompleteMealPlanProvider();
@@ -128,7 +132,8 @@ class _CreateMealPlanScreenState extends State<CreateMealPlanScreen> {
                                     backgroundcolor: AppColors.redcolor);
                               } else {
                                 if (mealPlanProvider.activeStep == 0) {
-                                  mealPlanProvider.createMealPlanProvider();
+                                  mealPlanProvider.createMealPlanProvider(
+                                      widget.appointmentID);
                                 } else {
                                   mealPlanProvider.updateMealPlanProvider();
                                 }

@@ -16,6 +16,7 @@ class CareGoalPlanModel {
   CareGoalPlanModel({
     this.userId,
     this.careGoalPlanId,
+    this.appointmentID,
     this.goalType,
     this.exerciseType,
     this.waterCaloriesWeightActual,
@@ -35,6 +36,7 @@ class CareGoalPlanModel {
   });
 
   String? userId;
+  String? appointmentID;
   String? careGoalPlanId;
   String? goalType;
   String? exerciseType;
@@ -58,6 +60,7 @@ class CareGoalPlanModel {
   factory CareGoalPlanModel.fromJson(Map<String, dynamic> json) =>
       CareGoalPlanModel(
         userId: json["userID"],
+        appointmentID: json["appointmentID"],
         careGoalPlanId: json["careGoalPlanId"],
         goalType: json["goalType"],
         exerciseType: json["exerciseType"],
@@ -78,6 +81,7 @@ class CareGoalPlanModel {
 
   Map<String, dynamic> toJson(String docID) => {
         "userID": userId,
+        "appointmentID": appointmentID,
         "careGoalPlanId": docID,
         "goalType": goalType,
         "exerciseType": exerciseType,

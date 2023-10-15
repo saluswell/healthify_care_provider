@@ -17,6 +17,8 @@ class FirebaseUtils {
 
   static String careGoalPlans = "careGoalPlans";
 
+  static String comments = "comments";
+
   static String reviews = "reviews";
 
   static String healthtips = "healthtips";

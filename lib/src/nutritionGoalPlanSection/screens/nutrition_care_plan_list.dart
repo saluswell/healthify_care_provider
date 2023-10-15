@@ -59,7 +59,8 @@ class _NutritionCarePlanState extends State<NutritionCarePlan> {
       body: Column(
         children: [
           StreamProvider.value(
-              value: nutritionCarePlanService.streamCarePlans(),
+              value: nutritionCarePlanService
+                  .streamCarePlans(widget.appointmentID),
               initialData: [AddCarePlanModel()],
               builder: (context, child) {
                 List<AddCarePlanModel> carePlansList =
@@ -68,7 +69,7 @@ class _NutritionCarePlanState extends State<NutritionCarePlan> {
                     ? const Center(
                         child: Padding(
                         padding: EdgeInsets.only(top: 220),
-                        child: Text("No Care Plans Found!Add Care Plans +",
+                        child: Text("No Nutrition Care Plans Found!Add New ",
                             style: TextStyle(
                                 // fontFamily: 'Gilroy',
                                 color: AppColors.blackcolor,

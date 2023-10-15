@@ -2,7 +2,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_share/flutter_share.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:healthify_care_provider/src/mealPlansSection/screens/meal_plan_listing_screen.dart';
 import 'package:provider/provider.dart';
 
 import '../../../common/helperFunctions/navigatorHelper.dart';
@@ -13,10 +12,8 @@ import '../../../res.dart';
 import '../../authenticationsection/Models/userModel.dart';
 import '../../authenticationsection/providers/authProvider.dart';
 import '../../authenticationsection/services/userServices.dart';
-import '../../mealPlansSection/screens/create_meal_plan_screen.dart';
 import '../../notificationSection/screens/notificationListScreen.dart';
 import '../../recipesSection/screens/reccipes_list_screen.dart';
-import '../../workOutSection/screens/workouts_list.dart';
 import '../help_center.dart';
 import '../privacy_policy.dart';
 import '../terms_and_conditions.dart';
@@ -322,49 +319,49 @@ class _MyAccountScreenState extends State<MyAccountScreen> {
                       ),
 
                       const SizedBox(
-                        height: 6,
+                        height: 16,
                       ),
-                      Divider(
-                        color: AppColors.lightdarktextcolor.withOpacity(0.7),
-                      ),
-                      const SizedBox(
-                        height: 6,
-                      ),
-                      MyAccountCardWidgets(
-                        height: 22,
-                        width: 22,
-                        text: "Workouts",
-                        prefixicon: Res.helpercenter,
-                        suffixicon: Res.arrowforward,
-                        ontap: () {
-                          toNext(
-                              context: context, widget: WorkoutsListScreen());
-                        },
-                      ),
-                      const SizedBox(
-                        height: 6,
-                      ),
-                      Divider(
-                        color: AppColors.lightdarktextcolor.withOpacity(0.7),
-                      ),
-                      const SizedBox(
-                        height: 6,
-                      ),
-                      MyAccountCardWidgets(
-                        height: 22,
-                        width: 22,
-                        text: "Meal Plans",
-                        prefixicon: Res.helpercenter,
-                        suffixicon: Res.arrowforward,
-                        ontap: () {
-                          toNext(
-                              context: context, widget: MealPlansListingScreen());
-                        },
-                      ),
-
-                      const SizedBox(
-                        height: 10,
-                      ),
+                      // Divider(
+                      //   color: AppColors.lightdarktextcolor.withOpacity(0.7),
+                      // ),
+                      // const SizedBox(
+                      //   height: 6,
+                      // ),
+                      // MyAccountCardWidgets(
+                      //   height: 22,
+                      //   width: 22,
+                      //   text: "Workouts",
+                      //   prefixicon: Res.helpercenter,
+                      //   suffixicon: Res.arrowforward,
+                      //   ontap: () {
+                      //     toNext(
+                      //         context: context, widget: WorkoutsListScreen());
+                      //   },
+                      // ),
+                      // const SizedBox(
+                      //   height: 6,
+                      // ),
+                      // Divider(
+                      //   color: AppColors.lightdarktextcolor.withOpacity(0.7),
+                      // ),
+                      // const SizedBox(
+                      //   height: 6,
+                      // ),
+                      // MyAccountCardWidgets(
+                      //   height: 22,
+                      //   width: 22,
+                      //   text: "Meal Plans",
+                      //   prefixicon: Res.helpercenter,
+                      //   suffixicon: Res.arrowforward,
+                      //   ontap: () {
+                      //     toNext(
+                      //         context: context, widget: MealPlansListingScreen());
+                      //   },
+                      // ),
+                      //
+                      // const SizedBox(
+                      //   height: 10,
+                      // ),
                       AccountHeadingDividerWidget(
                         text: "Legal",
                       ),

@@ -15,6 +15,7 @@ String articleModelToJson(MealPlanModel data) =>
 class MealPlanModel {
   MealPlanModel(
       {this.userId,
+      this.appointmentId,
       this.mealPlanId,
       this.mealPlanTitle,
       this.breakfastMeals,
@@ -25,6 +26,7 @@ class MealPlanModel {
       this.mealPlanDay});
 
   String? userId;
+  String? appointmentId;
   String? mealPlanId;
   String? mealPlanTitle;
   List<String>? breakfastMeals;
@@ -37,6 +39,7 @@ class MealPlanModel {
 
   factory MealPlanModel.fromJson(Map<String, dynamic> json) => MealPlanModel(
       userId: json["userID"],
+      appointmentId: json["appointmentId"],
       mealPlanId: json["mealPlanId"],
       mealPlanTitle: json["mealPlanTitle"],
       breakfastMeals: json["breakfastMeals"] == null
@@ -54,6 +57,7 @@ class MealPlanModel {
 
   Map<String, dynamic> toJson(String docID) => {
         "userID": userId,
+        "appointmentId": appointmentId,
         "mealPlanId": docID,
         "mealPlanTitle": mealPlanTitle,
         "breakfastMeals": breakfastMeals,

@@ -9,11 +9,13 @@ import 'package:provider/provider.dart';
 import '../../../common/helperFunctions/navigatorHelper.dart';
 import '../../../common/utils/appcolors.dart';
 import '../../../common/utils/themes.dart';
-import '../../../common/widgets/cacheNetworkImageWidget.dart';
 import 'meal_plan_detail_screen.dart';
 
 class MealPlansListingScreen extends StatefulWidget {
-  const MealPlansListingScreen({Key? key}) : super(key: key);
+  final String appointmentID;
+
+  const MealPlansListingScreen({Key? key, required this.appointmentID})
+      : super(key: key);
 
   @override
   State<MealPlansListingScreen> createState() => _MealPlansListingScreenState();
@@ -59,7 +61,9 @@ class _MealPlansListingScreenState extends State<MealPlansListingScreen> {
                     onTap: () {
                       toNext(
                           context: context,
-                          widget: const CreateMealPlanScreen());
+                          widget: CreateMealPlanScreen(
+                            appointmentID: widget.appointmentID,
+                          ));
                     },
                     child: Container(
                       height: 40,
@@ -99,7 +103,7 @@ class _MealPlansListingScreenState extends State<MealPlansListingScreen> {
             height: 10,
           ),
           StreamProvider.value(
-              value: mealPlanServices.streamMealPlans(),
+              value: mealPlanServices.streamMealPlans(widget.appointmentID),
               initialData: [MealPlanModel()],
               builder: (context, child) {
                 List<MealPlanModel> recipesList =
@@ -108,7 +112,7 @@ class _MealPlansListingScreenState extends State<MealPlansListingScreen> {
                     ? const Center(
                         child: Padding(
                         padding: EdgeInsets.only(top: 220),
-                        child: Text("No Recipes Found!",
+                        child: Text("No Meal Plans  Found!Add New",
                             style: TextStyle(
                                 // fontFamily: 'Gilroy',
                                 color: AppColors.blackcolor,

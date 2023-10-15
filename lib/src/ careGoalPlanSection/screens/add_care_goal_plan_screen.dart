@@ -18,7 +18,10 @@ import '../models/care_goal_plan_model.dart';
 import '../widgets/select_goal_type_dialog.dart';
 
 class AddCareGoalPlanScreen extends StatefulWidget {
-  const AddCareGoalPlanScreen({Key? key}) : super(key: key);
+  final String appointmentID;
+
+  const AddCareGoalPlanScreen({Key? key, required this.appointmentID})
+      : super(key: key);
 
   @override
   State<AddCareGoalPlanScreen> createState() => _AddCareGoalPlanScreenState();
@@ -83,6 +86,7 @@ class _AddCareGoalPlanScreenState extends State<AddCareGoalPlanScreen> {
                         careGoalProvider.createCareGoalPlanProvider(
                             CareGoalPlanModel(
                                 userId: getUserID(),
+                                appointmentID: widget.appointmentID,
                                 goalType:
                                     careGoalProvider.selectedGoal.toString(),
                                 carboHydratesActual:
@@ -108,6 +112,7 @@ class _AddCareGoalPlanScreenState extends State<AddCareGoalPlanScreen> {
                         careGoalProvider.createCareGoalPlanProvider(
                             CareGoalPlanModel(
                                 userId: getUserID(),
+                                appointmentID: widget.appointmentID,
                                 goalType:
                                     careGoalProvider.selectedGoal.toString(),
                                 waterCaloriesWeightActual:
@@ -129,6 +134,7 @@ class _AddCareGoalPlanScreenState extends State<AddCareGoalPlanScreen> {
                         careGoalProvider.createCareGoalPlanProvider(
                             CareGoalPlanModel(
                                 userId: getUserID(),
+                                appointmentID: widget.appointmentID,
                                 goalType:
                                     careGoalProvider.selectedGoal.toString(),
                                 waterCaloriesWeightActual:
@@ -150,6 +156,7 @@ class _AddCareGoalPlanScreenState extends State<AddCareGoalPlanScreen> {
                         careGoalProvider.createCareGoalPlanProvider(
                             CareGoalPlanModel(
                                 userId: getUserID(),
+                                appointmentID: widget.appointmentID,
                                 goalType:
                                     careGoalProvider.selectedGoal.toString(),
                                 waterCaloriesWeightActual:
@@ -177,6 +184,7 @@ class _AddCareGoalPlanScreenState extends State<AddCareGoalPlanScreen> {
                           careGoalProvider.createCareGoalPlanProvider(
                               CareGoalPlanModel(
                                   userId: getUserID(),
+                                  appointmentID: widget.appointmentID,
                                   goalType:
                                       careGoalProvider.selectedGoal.toString(),
                                   exerciseType: careGoalProvider

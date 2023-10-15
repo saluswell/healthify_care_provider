@@ -147,7 +147,7 @@ class _ProfessionalInformationScreenState
                                                 hintText:
                                                     "Professional ID number",
                                                 textInputType:
-                                                    TextInputType.number),
+                                                    TextInputType.text),
                                             const SizedBox(
                                               height: 5,
                                             ),

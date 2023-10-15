@@ -11,7 +11,10 @@ import '../models/care_goal_plan_model.dart';
 import '../widgets/care_goal_plan_card_widget.dart';
 
 class CareGoalPlansListScreen extends StatefulWidget {
-  const CareGoalPlansListScreen({Key? key}) : super(key: key);
+  final String appointmentID;
+
+  const CareGoalPlansListScreen({Key? key, required this.appointmentID})
+      : super(key: key);
 
   @override
   State<CareGoalPlansListScreen> createState() =>
@@ -56,7 +59,11 @@ class _CareGoalPlansListScreenState extends State<CareGoalPlansListScreen> {
                   ),
                   InkWell(
                     onTap: () {
-                      toNext(context: context, widget: AddCareGoalPlanScreen());
+                      toNext(
+                          context: context,
+                          widget: AddCareGoalPlanScreen(
+                            appointmentID: widget.appointmentID,
+                          ));
                     },
                     child: Container(
                       height: 40,
@@ -96,7 +103,8 @@ class _CareGoalPlansListScreenState extends State<CareGoalPlansListScreen> {
             height: 10,
           ),
           StreamProvider.value(
-              value: careGoalPlanServices.streamCareGoalPlans(),
+              value: careGoalPlanServices
+                  .streamCareGoalPlans(widget.appointmentID),
               initialData: [CareGoalPlanModel()],
               builder: (context, child) {
                 List<CareGoalPlanModel> careGoalPlansList =

@@ -52,12 +52,12 @@ class MealPlanServices {
   }
 
   /// show list of pending and approved articles  from admin
-  Stream<List<MealPlanModel>> streamMealPlans() {
+  Stream<List<MealPlanModel>> streamMealPlans(String appointmentId) {
     //  try {
     return FirebaseFirestore.instance
         .collection(FirebaseUtils.mealPlans)
         //  .where("userID", isEqualTo: FirebaseAuth.instance.currentUser!.uid)
-        //.where("isApprovedByAdmin", isEqualTo: isApprove)
+        .where("appointmentId", isEqualTo: appointmentId)
         .snapshots()
         .map((list) => list.docs
             .map((singleDoc) => MealPlanModel.fromJson(singleDoc.data()))

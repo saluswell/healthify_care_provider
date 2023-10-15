@@ -1,5 +1,6 @@
 import 'package:date_time_format/date_time_format.dart';
 import 'package:flutter/material.dart';
+import 'package:healthify_care_provider/src/mealPlansSection/screens/meal_plan_listing_screen.dart';
 import 'package:provider/provider.dart';
 
 import '../../../ careGoalPlanSection/screens/care_goal_plans_listing.dart';
@@ -17,6 +18,7 @@ import '../../../notesSection/soapNotes/screens/soapNotesList.dart';
 import '../../../notificationSection/handlers/notification_handler.dart';
 import '../../../nutritionGoalPlanSection/screens/nutrition_care_plan_list.dart';
 import '../../../reviewsSection/screens/givereviewScreen.dart';
+import '../../../workOutSection/screens/workouts_list.dart';
 import '../../models/appointmetntNewModel.dart';
 import '../../providers/appointmentProvider.dart';
 
@@ -414,607 +416,669 @@ class _AppointmentDetailsScreenState extends State<AppointmentDetailsScreen> {
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 12),
-        child: Column(
-          children: [
-            const SizedBox(
-              height: 25,
-            ),
-            if (currentUserType == "Dietitian") ...[
-              Row(
-                children: [
-                  Expanded(
-                    child: CommonButtonWidget(
-                        text: "Nutrition Care Plan",
-                        bordercolor: AppColors.darkAppColor,
-                        textfont: 12,
-                        buttonHeight: 45,
-                        horizontalPadding: 0,
-                        backgroundcolor: AppColors.darkAppColor,
-                        onTap: () {
-                          toNext(
-                              context: context,
-                              widget: NutritionCarePlan(
-                                appointmentID: widget
-                                    .appointmentModelNew.appointmentId
-                                    .toString(),
-                                patientID: widget.appointmentModelNew.patientId
-                                    .toString(),
-                                dietitianID: widget
-                                    .appointmentModelNew.dietitianId
-                                    .toString(),
-                              ));
-                        }),
-                  ),
-                  SizedBox(
-                    width: 10,
-                  ),
-                  Expanded(
-                    child: CommonButtonWidget(
-                        text: "Care Goal Plan",
-                        bordercolor: AppColors.darkAppColor,
-                        textfont: 12,
-                        buttonHeight: 45,
-                        horizontalPadding: 0,
-                        backgroundcolor: AppColors.darkAppColor,
-                        onTap: () {
-                          toNext(
-                              context: context,
-                              widget: CareGoalPlansListScreen());
-                          // toNext(
-                          //     context: context,
-                          //     widget: NutritionCarePlan(
-                          //       appointmentID: widget
-                          //           .appointmentModelNew.appointmentId
-                          //           .toString(),
-                          //       patientID: widget.appointmentModelNew.patientId
-                          //           .toString(),
-                          //       dietitianID: widget
-                          //           .appointmentModelNew.dietitianId
-                          //           .toString(),
-                          //     ));
-                        }),
-                  ),
-                ],
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              const SizedBox(
+                height: 25,
               ),
-            ] else ...[
-              CommonButtonWidget(
-                  text: "SOAP Notes",
-                  bordercolor: AppColors.darkAppColor,
-                  textfont: 13,
-                  buttonHeight: 45,
-                  horizontalPadding: 15,
-                  backgroundcolor: AppColors.darkAppColor,
-                  onTap: () {
-                    toNext(
-                        context: context,
-                        widget: SoapNotesList(
-                          appointmentID: widget
-                              .appointmentModelNew.appointmentId
-                              .toString(),
-                          patientID:
-                              widget.appointmentModelNew.patientId.toString(),
-                          dietitianID:
-                              widget.appointmentModelNew.dietitianId.toString(),
-                        ));
-                  }),
-            ],
-            DateTime.now().isBefore(
-                    widget.appointmentModelNew.combineDateTime!.toDate())
-                ? Text(
-                    "Appointment will begin in : ",
-                    style: fontW5S12(context)!.copyWith(
-                        fontSize: 16,
-                        color: AppColors.blackcolor,
-                        fontWeight: FontWeight.w600),
-                  )
-                : Text(
-                    "",
-                    style: fontW5S12(context)!.copyWith(
-                        fontSize: 1,
-                        color: AppColors.redcolor,
-                        fontWeight: FontWeight.w600),
-                  ),
-            const SizedBox(
-              height: 20,
-            ),
-            if (widget.appointmentModelNew.appointmentStatus ==
-                FirebaseUtils.progress)
-              DateTime.now().isBefore(
-                      widget.appointmentModelNew.combineDateTime!.toDate())
-                  ? Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 50),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Column(
-                            children: [
-                              Text(
-                                days,
-                                style: fontW5S12(context)!.copyWith(
-                                    fontSize: 20,
-                                    color: AppColors.blackcolor,
-                                    fontWeight: FontWeight.w600),
-                              ),
-                              const SizedBox(
-                                height: 5,
-                              ),
-                              Text(
-                                "Days",
-                                style: fontW5S12(context)!.copyWith(
-                                    fontSize: 14,
-                                    color: AppColors.appcolor,
-                                    fontWeight: FontWeight.w600),
-                              ),
-                            ],
-                          ),
-                          Column(
-                            children: [
-                              Text(
-                                hours,
-                                style: fontW5S12(context)!.copyWith(
-                                    fontSize: 20,
-                                    color: AppColors.blackcolor,
-                                    fontWeight: FontWeight.w600),
-                              ),
-                              const SizedBox(
-                                height: 5,
-                              ),
-                              Text(
-                                "Hours",
-                                style: fontW5S12(context)!.copyWith(
-                                    fontSize: 14,
-                                    color: AppColors.appcolor,
-                                    fontWeight: FontWeight.w600),
-                              ),
-                            ],
-                          ),
-                          Column(
-                            children: [
-                              Text(
-                                minutes,
-                                style: fontW5S12(context)!.copyWith(
-                                    fontSize: 20,
-                                    color: AppColors.blackcolor,
-                                    fontWeight: FontWeight.w600),
-                              ),
-                              const SizedBox(
-                                height: 5,
-                              ),
-                              Text(
-                                "Minutes",
-                                style: fontW5S12(context)!.copyWith(
-                                    fontSize: 14,
-                                    color: AppColors.appcolor,
-                                    fontWeight: FontWeight.w600),
-                              ),
-                            ],
-                          ),
-                          Column(
-                            children: [
-                              Text(
-                                seconds,
-                                style: fontW5S12(context)!.copyWith(
-                                    fontSize: 20,
-                                    color: AppColors.blackcolor,
-                                    fontWeight: FontWeight.w600),
-                              ),
-                              const SizedBox(
-                                height: 5,
-                              ),
-                              Text(
-                                "Seconds",
-                                style: fontW5S12(context)!.copyWith(
-                                    fontSize: 14,
-                                    color: AppColors.appcolor,
-                                    fontWeight: FontWeight.w600),
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                    )
-                  : Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 50),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Column(
-                            children: [
-                              Text(
-                                "00",
-                                style: fontW5S12(context)!.copyWith(
-                                    fontSize: 20,
-                                    color: AppColors.redcolor,
-                                    fontWeight: FontWeight.w600),
-                              ),
-                              const SizedBox(
-                                height: 5,
-                              ),
-                              Text(
-                                "Days",
-                                style: fontW5S12(context)!.copyWith(
-                                    fontSize: 14,
-                                    color: AppColors.appcolor,
-                                    fontWeight: FontWeight.w600),
-                              ),
-                            ],
-                          ),
-                          Column(
-                            children: [
-                              Text(
-                                "00",
-                                style: fontW5S12(context)!.copyWith(
-                                    fontSize: 20,
-                                    color: AppColors.redcolor,
-                                    fontWeight: FontWeight.w600),
-                              ),
-                              const SizedBox(
-                                height: 5,
-                              ),
-                              Text(
-                                "Hours",
-                                style: fontW5S12(context)!.copyWith(
-                                    fontSize: 14,
-                                    color: AppColors.appcolor,
-                                    fontWeight: FontWeight.w600),
-                              ),
-                            ],
-                          ),
-                          Column(
-                            children: [
-                              Text(
-                                "00",
-                                style: fontW5S12(context)!.copyWith(
-                                    fontSize: 20,
-                                    color: AppColors.redcolor,
-                                    fontWeight: FontWeight.w600),
-                              ),
-                              const SizedBox(
-                                height: 5,
-                              ),
-                              Text(
-                                "Minutes",
-                                style: fontW5S12(context)!.copyWith(
-                                    fontSize: 14,
-                                    color: AppColors.appcolor,
-                                    fontWeight: FontWeight.w600),
-                              ),
-                            ],
-                          ),
-                          Column(
-                            children: [
-                              Text(
-                                "00",
-                                style: fontW5S12(context)!.copyWith(
-                                    fontSize: 20,
-                                    color: AppColors.redcolor,
-                                    fontWeight: FontWeight.w600),
-                              ),
-                              const SizedBox(
-                                height: 5,
-                              ),
-                              Text(
-                                "Seconds",
-                                style: fontW5S12(context)!.copyWith(
-                                    fontSize: 14,
-                                    color: AppColors.appcolor,
-                                    fontWeight: FontWeight.w600),
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                    ),
-            const SizedBox(
-              height: 20,
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 6),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    "Appointment DateTime",
-                    style: fontW5S12(context)!.copyWith(
-                        fontSize: 13,
-                        color: AppColors.blackcolor,
-                        fontWeight: FontWeight.w600),
-                  ),
-                  Text(
-                    widget.appointmentModelNew.combineDateTime!
-                        .toDate()
-                        .format(DateTimeFormats.american)
-                        .toString()
-                        .replaceAll("12:00 am", ""),
-                    style: fontW5S12(context)!.copyWith(
-                        fontSize: 13,
-                        color: AppColors.blackcolor.withOpacity(0.6),
-                        fontWeight: FontWeight.w500),
-                  ),
-                ],
-              ),
-            ),
-            const SizedBox(
-              height: 12,
-            ),
-            Card(
-              elevation: 6,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(7),
-              ),
-              child: Column(
-                children: [
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  Text(
-                    "Patient Details",
-                    style: fontW5S12(context)!.copyWith(
-                        fontSize: 14,
-                        color: AppColors.blackcolor,
-                        fontWeight: FontWeight.w600),
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 15),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          "Name",
-                          style: fontW5S12(context)!.copyWith(
-                              fontSize: 12,
-                              color: AppColors.blackcolor.withOpacity(0.6),
-                              fontWeight: FontWeight.w600),
-                        ),
-                        Text(
-                          widget.appointmentModelNew.patientName.toString(),
-                          style: fontW5S12(context)!.copyWith(
-                              fontSize: 12,
-                              color: AppColors.blackcolor,
-                              fontWeight: FontWeight.w600),
-                        ),
-                      ],
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 15),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          "Height",
-                          style: fontW5S12(context)!.copyWith(
-                              fontSize: 12,
-                              color: AppColors.blackcolor.withOpacity(0.6),
-                              fontWeight: FontWeight.w600),
-                        ),
-                        Text(
-                          "${widget.appointmentModelNew.patientQuestionareModel!.height} Inches",
-                          style: fontW5S12(context)!.copyWith(
-                              fontSize: 12,
-                              color: AppColors.blackcolor,
-                              fontWeight: FontWeight.w600),
-                        ),
-                      ],
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 15),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          "Weight",
-                          style: fontW5S12(context)!.copyWith(
-                              fontSize: 12,
-                              color: AppColors.blackcolor.withOpacity(0.6),
-                              fontWeight: FontWeight.w600),
-                        ),
-                        Text(
-                          "${widget.appointmentModelNew.patientQuestionareModel!.weight} lbs",
-                          style: fontW5S12(context)!.copyWith(
-                              fontSize: 12,
-                              color: AppColors.blackcolor,
-                              fontWeight: FontWeight.w600),
-                        ),
-                      ],
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 15),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          "Activity Level",
-                          style: fontW5S12(context)!.copyWith(
-                              fontSize: 12,
-                              color: AppColors.blackcolor.withOpacity(0.6),
-                              fontWeight: FontWeight.w600),
-                        ),
-                        Text(
-                          "${widget.appointmentModelNew.patientQuestionareModel!.activityLevelList![0].toString()}",
-                          style: fontW5S12(context)!.copyWith(
-                              fontSize: 12,
-                              color: AppColors.blackcolor,
-                              fontWeight: FontWeight.w600),
-                        ),
-                      ],
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  Text(
-                    "Want to Achieve",
-                    style: fontW5S12(context)!.copyWith(
-                        fontSize: 14,
-                        color: AppColors.blackcolor.withOpacity(0.9),
-                        fontWeight: FontWeight.w600),
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 15),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              if (currentUserType == "Dietitian") ...[
+                Column(
+                  children: [
+                    Row(
                       children: [
                         Expanded(
-                          flex: 5,
-                          child: SizedBox(
-                            height: 50,
-                            // width: 300,
-                            child: ListView.builder(
-                                itemCount: widget
-                                    .appointmentModelNew
-                                    .patientQuestionareModel!
-                                    .wantToAchieveList!
-                                    .length,
-                                scrollDirection: Axis.horizontal,
-                                itemBuilder: ((context, index) {
-                                  return Card(
-                                    elevation: 4,
-                                    child: Center(
-                                      child: Padding(
-                                        padding: const EdgeInsets.symmetric(
-                                            horizontal: 5),
-                                        child: Text(
-                                          "${widget.appointmentModelNew.patientQuestionareModel!.wantToAchieveList![index]}",
-                                          style: fontW5S12(context)!.copyWith(
-                                              fontSize: 11,
-                                              color: AppColors.blackcolor,
-                                              fontWeight: FontWeight.w600),
-                                        ),
-                                      ),
-                                    ),
-                                  );
-                                })),
-                          ),
+                          child: CommonButtonWidget(
+                              text: "Nutrition Care Plan",
+                              bordercolor: AppColors.darkAppColor,
+                              textfont: 12,
+                              buttonHeight: 45,
+                              horizontalPadding: 0,
+                              backgroundcolor: AppColors.darkAppColor,
+                              onTap: () {
+                                toNext(
+                                    context: context,
+                                    widget: NutritionCarePlan(
+                                      appointmentID: widget
+                                          .appointmentModelNew.appointmentId
+                                          .toString(),
+                                      patientID: widget
+                                          .appointmentModelNew.patientId
+                                          .toString(),
+                                      dietitianID: widget
+                                          .appointmentModelNew.dietitianId
+                                          .toString(),
+                                    ));
+                              }),
+                        ),
+                        SizedBox(
+                          width: 10,
+                        ),
+                        Expanded(
+                          child: CommonButtonWidget(
+                              text: "Care Goal Plan",
+                              bordercolor: AppColors.darkAppColor,
+                              textfont: 12,
+                              buttonHeight: 45,
+                              horizontalPadding: 0,
+                              backgroundcolor: AppColors.darkAppColor,
+                              onTap: () {
+                                toNext(
+                                    context: context,
+                                    widget: CareGoalPlansListScreen(
+                                      appointmentID: widget
+                                          .appointmentModelNew.appointmentId
+                                          .toString(),
+                                    ));
+                                // toNext(
+                                //     context: context,
+                                //     widget: NutritionCarePlan(
+                                //       appointmentID: widget
+                                //           .appointmentModelNew.appointmentId
+                                //           .toString(),
+                                //       patientID: widget.appointmentModelNew.patientId
+                                //           .toString(),
+                                //       dietitianID: widget
+                                //           .appointmentModelNew.dietitianId
+                                //           .toString(),
+                                //     ));
+                              }),
                         ),
                       ],
                     ),
-                  ),
-                  const SizedBox(
-                    height: 14,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 12),
-                    child: SizedBox(
-                      height: 150,
-                      width: 400,
-                      child: Card(
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(13),
-                            side: const BorderSide(
-                                width: 2, color: AppColors.appcolor)),
-                        color: AppColors.lightwhitecolor,
-                        elevation: 4,
-                        child: Column(
+                    SizedBox(
+                      height: 15,
+                    ),
+                    Row(
+                      children: [
+                        Expanded(
+                          child: CommonButtonWidget(
+                              text: "Meal Plans",
+                              bordercolor: AppColors.darkAppColor,
+                              textfont: 12,
+                              buttonHeight: 45,
+                              horizontalPadding: 0,
+                              backgroundcolor: AppColors.darkAppColor,
+                              onTap: () {
+                                toNext(
+                                    context: context,
+                                    widget: MealPlansListingScreen(
+                                      appointmentID: widget
+                                          .appointmentModelNew.appointmentId
+                                          .toString(),
+                                    ));
+                              }),
+                        ),
+                      ],
+                    ),
+                    SizedBox(
+                      height: 15,
+                    ),
+                  ],
+                ),
+              ] else if (currentUserType == "Fitness Trainer") ...[
+                CommonButtonWidget(
+                    text: "Workouts",
+                    bordercolor: AppColors.darkAppColor,
+                    textfont: 13,
+                    buttonHeight: 45,
+                    horizontalPadding: 15,
+                    backgroundcolor: AppColors.darkAppColor,
+                    onTap: () {
+                      toNext(
+                          context: context,
+                          widget: WorkoutsListScreen(
+                              // appointmentID:
+                              //     widget.appointmentModel.appointmentId.toString(),
+                              // patientID: widget.appointmentModel.patientId.toString(),
+                              // dietitianID:
+                              //     widget.appointmentModel.dietitianId.toString(),
+                              ));
+                    }),
+                SizedBox(
+                  height: 20,
+                ),
+              ] else if (currentUserType == "Physician" ||
+                  currentUserType == "Behavior Coache") ...[
+                CommonButtonWidget(
+                    text: "SOAP Notes",
+                    bordercolor: AppColors.darkAppColor,
+                    textfont: 13,
+                    buttonHeight: 45,
+                    horizontalPadding: 15,
+                    backgroundcolor: AppColors.darkAppColor,
+                    onTap: () {
+                      toNext(
+                          context: context,
+                          widget: SoapNotesList(
+                            appointmentID: widget
+                                .appointmentModelNew.appointmentId
+                                .toString(),
+                            patientID:
+                                widget.appointmentModelNew.patientId.toString(),
+                            dietitianID: widget.appointmentModelNew.dietitianId
+                                .toString(),
+                          ));
+                    }),
+              ],
+              DateTime.now().isBefore(
+                      widget.appointmentModelNew.combineDateTime!.toDate())
+                  ? Text(
+                      "Appointment will begin in : ",
+                      style: fontW5S12(context)!.copyWith(
+                          fontSize: 16,
+                          color: AppColors.blackcolor,
+                          fontWeight: FontWeight.w600),
+                    )
+                  : Text(
+                      "",
+                      style: fontW5S12(context)!.copyWith(
+                          fontSize: 1,
+                          color: AppColors.redcolor,
+                          fontWeight: FontWeight.w600),
+                    ),
+              const SizedBox(
+                height: 20,
+              ),
+              if (widget.appointmentModelNew.appointmentStatus ==
+                  FirebaseUtils.progress)
+                DateTime.now().isBefore(
+                        widget.appointmentModelNew.combineDateTime!.toDate())
+                    ? Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 50),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            const SizedBox(
-                              height: 20,
+                            Column(
+                              children: [
+                                Text(
+                                  days,
+                                  style: fontW5S12(context)!.copyWith(
+                                      fontSize: 20,
+                                      color: AppColors.blackcolor,
+                                      fontWeight: FontWeight.w600),
+                                ),
+                                const SizedBox(
+                                  height: 5,
+                                ),
+                                Text(
+                                  "Days",
+                                  style: fontW5S12(context)!.copyWith(
+                                      fontSize: 14,
+                                      color: AppColors.appcolor,
+                                      fontWeight: FontWeight.w600),
+                                ),
+                              ],
                             ),
-                            Text(
-                              widget.appointmentModelNew.payementPlansModel!
-                                  .visitType
-                                  .toString(),
-                              style: fontW5S12(context)!.copyWith(
-                                  fontSize: 17,
-                                  color: AppColors.blackcolor,
-                                  fontWeight: FontWeight.w600),
+                            Column(
+                              children: [
+                                Text(
+                                  hours,
+                                  style: fontW5S12(context)!.copyWith(
+                                      fontSize: 20,
+                                      color: AppColors.blackcolor,
+                                      fontWeight: FontWeight.w600),
+                                ),
+                                const SizedBox(
+                                  height: 5,
+                                ),
+                                Text(
+                                  "Hours",
+                                  style: fontW5S12(context)!.copyWith(
+                                      fontSize: 14,
+                                      color: AppColors.appcolor,
+                                      fontWeight: FontWeight.w600),
+                                ),
+                              ],
                             ),
-                            const SizedBox(
-                              height: 15,
+                            Column(
+                              children: [
+                                Text(
+                                  minutes,
+                                  style: fontW5S12(context)!.copyWith(
+                                      fontSize: 20,
+                                      color: AppColors.blackcolor,
+                                      fontWeight: FontWeight.w600),
+                                ),
+                                const SizedBox(
+                                  height: 5,
+                                ),
+                                Text(
+                                  "Minutes",
+                                  style: fontW5S12(context)!.copyWith(
+                                      fontSize: 14,
+                                      color: AppColors.appcolor,
+                                      fontWeight: FontWeight.w600),
+                                ),
+                              ],
                             ),
-                            Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 35),
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Text(
-                                    "Price",
-                                    style: fontW5S12(context)!.copyWith(
-                                        fontSize: 15,
-                                        color: AppColors.blackcolor
-                                            .withOpacity(0.6),
-                                        fontWeight: FontWeight.w500),
-                                  ),
-                                  Text(
-                                    "\$${widget.appointmentModelNew.payementPlansModel!.visitPrice}",
-                                    style: fontW5S12(context)!.copyWith(
-                                        fontSize: 15,
-                                        color:
-                                            AppColors.appcolor.withOpacity(0.9),
-                                        fontWeight: FontWeight.w500),
-                                  ),
-                                ],
-                              ),
+                            Column(
+                              children: [
+                                Text(
+                                  seconds,
+                                  style: fontW5S12(context)!.copyWith(
+                                      fontSize: 20,
+                                      color: AppColors.blackcolor,
+                                      fontWeight: FontWeight.w600),
+                                ),
+                                const SizedBox(
+                                  height: 5,
+                                ),
+                                Text(
+                                  "Seconds",
+                                  style: fontW5S12(context)!.copyWith(
+                                      fontSize: 14,
+                                      color: AppColors.appcolor,
+                                      fontWeight: FontWeight.w600),
+                                ),
+                              ],
                             ),
-                            const SizedBox(
-                              height: 10,
+                          ],
+                        ),
+                      )
+                    : Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 50),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Column(
+                              children: [
+                                Text(
+                                  "00",
+                                  style: fontW5S12(context)!.copyWith(
+                                      fontSize: 20,
+                                      color: AppColors.redcolor,
+                                      fontWeight: FontWeight.w600),
+                                ),
+                                const SizedBox(
+                                  height: 5,
+                                ),
+                                Text(
+                                  "Days",
+                                  style: fontW5S12(context)!.copyWith(
+                                      fontSize: 14,
+                                      color: AppColors.appcolor,
+                                      fontWeight: FontWeight.w600),
+                                ),
+                              ],
                             ),
-                            Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 35),
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Text(
-                                    "Time Duration",
-                                    style: fontW5S12(context)!.copyWith(
-                                        fontSize: 15,
-                                        color: AppColors.blackcolor
-                                            .withOpacity(0.6),
-                                        fontWeight: FontWeight.w500),
-                                  ),
-                                  Text(
-                                    widget
-                                                .appointmentModelNew
-                                                .payementPlansModel!
-                                                .timeDuration ==
-                                            null
-                                        ? "60"
-                                        : "${widget.appointmentModelNew.payementPlansModel!.timeDuration} Minutes",
-                                    style: fontW5S12(context)!.copyWith(
-                                        fontSize: 15,
-                                        color:
-                                            AppColors.appcolor.withOpacity(0.9),
-                                        fontWeight: FontWeight.w500),
-                                  ),
-                                ],
-                              ),
-                            )
+                            Column(
+                              children: [
+                                Text(
+                                  "00",
+                                  style: fontW5S12(context)!.copyWith(
+                                      fontSize: 20,
+                                      color: AppColors.redcolor,
+                                      fontWeight: FontWeight.w600),
+                                ),
+                                const SizedBox(
+                                  height: 5,
+                                ),
+                                Text(
+                                  "Hours",
+                                  style: fontW5S12(context)!.copyWith(
+                                      fontSize: 14,
+                                      color: AppColors.appcolor,
+                                      fontWeight: FontWeight.w600),
+                                ),
+                              ],
+                            ),
+                            Column(
+                              children: [
+                                Text(
+                                  "00",
+                                  style: fontW5S12(context)!.copyWith(
+                                      fontSize: 20,
+                                      color: AppColors.redcolor,
+                                      fontWeight: FontWeight.w600),
+                                ),
+                                const SizedBox(
+                                  height: 5,
+                                ),
+                                Text(
+                                  "Minutes",
+                                  style: fontW5S12(context)!.copyWith(
+                                      fontSize: 14,
+                                      color: AppColors.appcolor,
+                                      fontWeight: FontWeight.w600),
+                                ),
+                              ],
+                            ),
+                            Column(
+                              children: [
+                                Text(
+                                  "00",
+                                  style: fontW5S12(context)!.copyWith(
+                                      fontSize: 20,
+                                      color: AppColors.redcolor,
+                                      fontWeight: FontWeight.w600),
+                                ),
+                                const SizedBox(
+                                  height: 5,
+                                ),
+                                Text(
+                                  "Seconds",
+                                  style: fontW5S12(context)!.copyWith(
+                                      fontSize: 14,
+                                      color: AppColors.appcolor,
+                                      fontWeight: FontWeight.w600),
+                                ),
+                              ],
+                            ),
                           ],
                         ),
                       ),
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 15,
-                  )
-                ],
+              const SizedBox(
+                height: 20,
               ),
-            ),
-            const SizedBox(
-              height: 50,
-            )
-          ],
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 6),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      "Appointment DateTime",
+                      style: fontW5S12(context)!.copyWith(
+                          fontSize: 13,
+                          color: AppColors.blackcolor,
+                          fontWeight: FontWeight.w600),
+                    ),
+                    Text(
+                      widget.appointmentModelNew.combineDateTime!
+                          .toDate()
+                          .format(DateTimeFormats.american)
+                          .toString()
+                          .replaceAll("12:00 am", ""),
+                      style: fontW5S12(context)!.copyWith(
+                          fontSize: 13,
+                          color: AppColors.blackcolor.withOpacity(0.6),
+                          fontWeight: FontWeight.w500),
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(
+                height: 12,
+              ),
+              Card(
+                elevation: 6,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(7),
+                ),
+                child: Column(
+                  children: [
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    Text(
+                      "Patient Details",
+                      style: fontW5S12(context)!.copyWith(
+                          fontSize: 14,
+                          color: AppColors.blackcolor,
+                          fontWeight: FontWeight.w600),
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 15),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            "Name",
+                            style: fontW5S12(context)!.copyWith(
+                                fontSize: 12,
+                                color: AppColors.blackcolor.withOpacity(0.6),
+                                fontWeight: FontWeight.w600),
+                          ),
+                          Text(
+                            widget.appointmentModelNew.patientName.toString(),
+                            style: fontW5S12(context)!.copyWith(
+                                fontSize: 12,
+                                color: AppColors.blackcolor,
+                                fontWeight: FontWeight.w600),
+                          ),
+                        ],
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 15),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            "Height",
+                            style: fontW5S12(context)!.copyWith(
+                                fontSize: 12,
+                                color: AppColors.blackcolor.withOpacity(0.6),
+                                fontWeight: FontWeight.w600),
+                          ),
+                          Text(
+                            "${widget.appointmentModelNew.patientQuestionareModel!.height} Inches",
+                            style: fontW5S12(context)!.copyWith(
+                                fontSize: 12,
+                                color: AppColors.blackcolor,
+                                fontWeight: FontWeight.w600),
+                          ),
+                        ],
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 15),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            "Weight",
+                            style: fontW5S12(context)!.copyWith(
+                                fontSize: 12,
+                                color: AppColors.blackcolor.withOpacity(0.6),
+                                fontWeight: FontWeight.w600),
+                          ),
+                          Text(
+                            "${widget.appointmentModelNew.patientQuestionareModel!.weight} lbs",
+                            style: fontW5S12(context)!.copyWith(
+                                fontSize: 12,
+                                color: AppColors.blackcolor,
+                                fontWeight: FontWeight.w600),
+                          ),
+                        ],
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 15),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            "Activity Level",
+                            style: fontW5S12(context)!.copyWith(
+                                fontSize: 12,
+                                color: AppColors.blackcolor.withOpacity(0.6),
+                                fontWeight: FontWeight.w600),
+                          ),
+                          Text(
+                            "${widget.appointmentModelNew.patientQuestionareModel!.activityLevelList![0].toString()}",
+                            style: fontW5S12(context)!.copyWith(
+                                fontSize: 12,
+                                color: AppColors.blackcolor,
+                                fontWeight: FontWeight.w600),
+                          ),
+                        ],
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    Text(
+                      "Want to Achieve",
+                      style: fontW5S12(context)!.copyWith(
+                          fontSize: 14,
+                          color: AppColors.blackcolor.withOpacity(0.9),
+                          fontWeight: FontWeight.w600),
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 15),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Expanded(
+                            flex: 5,
+                            child: SizedBox(
+                              height: 50,
+                              // width: 300,
+                              child: ListView.builder(
+                                  itemCount: widget
+                                      .appointmentModelNew
+                                      .patientQuestionareModel!
+                                      .wantToAchieveList!
+                                      .length,
+                                  scrollDirection: Axis.horizontal,
+                                  itemBuilder: ((context, index) {
+                                    return Card(
+                                      elevation: 4,
+                                      child: Center(
+                                        child: Padding(
+                                          padding: const EdgeInsets.symmetric(
+                                              horizontal: 5),
+                                          child: Text(
+                                            "${widget.appointmentModelNew.patientQuestionareModel!.wantToAchieveList![index]}",
+                                            style: fontW5S12(context)!.copyWith(
+                                                fontSize: 11,
+                                                color: AppColors.blackcolor,
+                                                fontWeight: FontWeight.w600),
+                                          ),
+                                        ),
+                                      ),
+                                    );
+                                  })),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 14,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 12),
+                      child: SizedBox(
+                        height: 150,
+                        width: 400,
+                        child: Card(
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(13),
+                              side: const BorderSide(
+                                  width: 2, color: AppColors.appcolor)),
+                          color: AppColors.lightwhitecolor,
+                          elevation: 4,
+                          child: Column(
+                            children: [
+                              const SizedBox(
+                                height: 20,
+                              ),
+                              Text(
+                                widget.appointmentModelNew.payementPlansModel!
+                                    .visitType
+                                    .toString(),
+                                style: fontW5S12(context)!.copyWith(
+                                    fontSize: 17,
+                                    color: AppColors.blackcolor,
+                                    fontWeight: FontWeight.w600),
+                              ),
+                              const SizedBox(
+                                height: 15,
+                              ),
+                              Padding(
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 35),
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(
+                                      "Price",
+                                      style: fontW5S12(context)!.copyWith(
+                                          fontSize: 15,
+                                          color: AppColors.blackcolor
+                                              .withOpacity(0.6),
+                                          fontWeight: FontWeight.w500),
+                                    ),
+                                    Text(
+                                      "\$${widget.appointmentModelNew.payementPlansModel!.visitPrice}",
+                                      style: fontW5S12(context)!.copyWith(
+                                          fontSize: 15,
+                                          color: AppColors.appcolor
+                                              .withOpacity(0.9),
+                                          fontWeight: FontWeight.w500),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              const SizedBox(
+                                height: 10,
+                              ),
+                              Padding(
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 35),
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(
+                                      "Time Duration",
+                                      style: fontW5S12(context)!.copyWith(
+                                          fontSize: 15,
+                                          color: AppColors.blackcolor
+                                              .withOpacity(0.6),
+                                          fontWeight: FontWeight.w500),
+                                    ),
+                                    Text(
+                                      widget
+                                                  .appointmentModelNew
+                                                  .payementPlansModel!
+                                                  .timeDuration ==
+                                              null
+                                          ? "60"
+                                          : "${widget.appointmentModelNew.payementPlansModel!.timeDuration} Minutes",
+                                      style: fontW5S12(context)!.copyWith(
+                                          fontSize: 15,
+                                          color: AppColors.appcolor
+                                              .withOpacity(0.9),
+                                          fontWeight: FontWeight.w500),
+                                    ),
+                                  ],
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 15,
+                    )
+                  ],
+                ),
+              ),
+              const SizedBox(
+                height: 100,
+              )
+            ],
+          ),
         ),
       ),
     );

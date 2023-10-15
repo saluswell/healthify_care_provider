@@ -12,11 +12,11 @@ class NutritionCarePlanService {
   }
 
   /// stream plans
-  Stream<List<AddCarePlanModel>> streamCarePlans() {
+  Stream<List<AddCarePlanModel>> streamCarePlans(String appointmentID) {
     return FirebaseFirestore.instance
         .collection(FirebaseUtils.carePlans)
         //.doc()
-        //.where("recieverID", isEqualTo: getUserID())
+        .where("appointmentId", isEqualTo: appointmentID)
 
         // .where("appointmentStatus", isEqualTo: appointmentStatus)
         .snapshots()

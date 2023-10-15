@@ -98,13 +98,14 @@ class MealPlanProvider extends ChangeNotifier {
 
   MealPlanServices mealPlanServices = MealPlanServices();
 
-  createMealPlanProvider() async {
+  createMealPlanProvider(String appointmentID) async {
     try {
       makeLoadingTrue();
       await mealPlanServices
           .createMealPlan(
               MealPlanModel(
                 userId: getUserID(),
+                appointmentId: appointmentID,
                 mealPlanTitle: mealPlanTitleController.text,
                 breakfastMeals: breakFastMealsItems,
                 lunchMeals: lunchMealsItems,

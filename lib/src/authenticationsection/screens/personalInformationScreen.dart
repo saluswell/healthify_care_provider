@@ -355,7 +355,7 @@ class _PersonalInformationScreenState extends State<PersonalInformationScreen> {
                                                     toppadding: 18,
                                                     hintText: "Zip/Postal Code",
                                                     textInputType:
-                                                        TextInputType.number),
+                                                        TextInputType.text),
                                               ),
                                             ],
                                           ),
